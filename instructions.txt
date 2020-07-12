@@ -1,0 +1,106 @@
+Steps to follow:
+conda activate djangoenv
+python computer_vision.py --mode display
+
+Other steps:
+This requires authorization of linkedin and so execute the below url in browser
+https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile&client_id=86mf11anljqsfe&redirect_uri=https%3A%2F%2Fapi-university.com
+
+and then sign in and provide permission and it will redicrect to api-university.com
+now take that url and fetch the authorization code and execute the curl command in git bash
+and get the access token and use that access token in the code
+
+
+redirectURI = https://api-university.com
+URLENCODE(redirectURI) = https%3A%2F%2Fapi-university.com
+clientId = 86mf11anljqsfe
+clientSecret = g0rxpjazY6gsH41v
+
+scope = r_liteprofile
+https://www.linkedin.com/oauth/v2/authorization?response_type=code&state=987654321&scope=r_liteprofile&client_id=86mf11anljqsfe&redirect_uri=https%3A%2F%2Fapi-university.com
+
+AQRiRMpG1XfjaRF4bqC9oncAVknCanLCuov-5gZgfuiNRUUbqlbI3lgP8Se34gWRMRxxiurBD6_HQ-MWdJknW2K0Vv081jwllVpAmEGzVieh-QFFbNqTgwkWxJbzulBsgCboR-54lsJnDo5YZB0zZVn2gGsQeyT1Lh9V01_pqnvERFzCX0QvDVTCisjeVg
+
+curl -ik -X POST https://www.linkedin.com/oauth/v2/accessToken \
+-d grant_type=authorization_code \
+-d code=AQRKyKY6Fbj_4FHEUxDcplJ82Gb9dnScu3pEvOjJ3Equ9D6rEuhu48MEFvIYfteuxtTd0o6ybLTHrEsYJaP-eomYrtJy8jHt4C865u1Mx_nIXtaverqQUmfvrQFoihz72WdE6APDz-T8CNgx9sP5VZ_Y5hzVSzvN_moYrfuf5ZofZiWj3ZIZPxn3RTRM9w \
+-d redirect_uri=https%3A%2F%2Fapi-university.com \
+-d client_id=86mf11anljqsfe \
+-d client_secret=g0rxpjazY6gsH41v
+
+{"access_token":"AQWXUgHMAwl_htHJ_NareR8thl_Z-_1cAOMg65dS9dkpikMnVxgZjiipk8Uuv2w
+3f0O_5awiGzA_xiq64nSQBwcmPygphqtC4-rTpVJmmnyMKTTTW1micVfnVQ4A6uT0gGrNlbR4DLYDmEg
+QIbMOVbjjm9tsYjBEMFj3snVTIll6FuAs-s0IW-CITfhsm2-_1VYo0hiBTz2FyZphPcAR2H7kDqeHifv
+rrfZ-BSpwvZXHCRUMDjx-59v9wEleM7VkOQorBpwpFoUs3WLbEeatKQbQ8kjA80W2vX1nnKzo1uy6Hi6
+-COoI47v0IbOCCKHT2Iu-bl6BltI0M5N-64EPcjEuj4ndQg","expires_in":5183999}
+
+access_token = AQWXUgHMAwl_htHJ_NareR8thl_Z-_1cAOMg65dS9dkpikMnVxgZjiipk8Uuv2w
+3f0O_5awiGzA_xiq64nSQBwcmPygphqtC4-rTpVJmmnyMKTTTW1micVfnVQ4A6uT0gGrNlbR4DLYDmEg
+QIbMOVbjjm9tsYjBEMFj3snVTIll6FuAs-s0IW-CITfhsm2-_1VYo0hiBTz2FyZphPcAR2H7kDqeHifv
+rrfZ-BSpwvZXHCRUMDjx-59v9wEleM7VkOQorBpwpFoUs3WLbEeatKQbQ8kjA80W2vX1nnKzo1uy6Hi6
+-COoI47v0IbOCCKHT2Iu-bl6BltI0M5N-64EPcjEuj4ndQg
+
+curl https://api.linkedin.com/v2/me -H "Authorization: Bearer AQWXUgHMAwl_htHJ_NareR8thl_Z-_1cAOMg65dS9dkpikMnVxgZjiipk8Uuv2w3f0O_5awiGzA_xiq64nSQBwcmPygphqtC4-rTpVJmmnyMKTTTW1micVfnVQ4A6uT0gGrNlbR4DLYDmEgQIbMOVbjjm9tsYjBEMFj3snVTIll6FuAs-s0IW-CITfhsm2-_1VYo0hiBTz2FyZphPcAR2H7kDqeHifvrrfZ-BSpwvZXHCRUMDjx-59v9wEleM7VkOQorBpwpFoUs3WLbEeatKQbQ8kjA80W2vX1nnKzo1uy6Hi6-COoI47v0IbOCCKHT2Iu-bl6BltI0M5N-64EPcjEuj4ndQg"
+
+
+{"localizedLastName":"Paul","profilePicture":{"displayImage":"urn:li:digitalmedi
+aAsset:C4E03AQHyruFU9k7n-A"},"firstName":{"localized":{"en_US":"Bikram"},"prefer
+redLocale":{"country":"US","language":"en"}},"lastName":{"localized":{"en_US":"P
+aul"},"preferredLocale":{"country":"US","language":"en"}},"id":"XbCxMWvGr-","loc
+alizedFirstName":"Bikram"}
+
+
+
+https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts-sdk/client-library?pivots=programming-language-python
+https://stackoverflow.com/questions/6955647/getting-linkedin-profile-picture
+https://docs.microsoft.com/en-us/linkedin/shared/integrations/people/profile-api?context=linkedin/consumer/context
+https://docs.microsoft.com/en-us/linkedin/shared/references/v2/profile/basic-profile
+https://docs.microsoft.com/en-us/azure/cognitive-services/computer-vision/quickstarts/python-analyze
+https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin?context=linkedin/consumer/context
+https://www.geeksforgeeks.org/get-post-requests-using-python/
+https://developer.linkedin.com/docs/ref/v2/profile/profile-picture
+https://stackoverflow.com/questions/34508981/response-object-is-not-subscriptable-python-http-post-request
+https://azuresdkdocs.blob.core.windows.net/$web/java/azure-cognitiveservices-computervision/1.1.0-preview.1/com/microsoft/azure/cognitiveservices/vision/computervision/package-summary.html
+
+
+####################
+HITESH
+
+
+curl -ik -X POST https://www.linkedin.com/oauth/v2/accessToken \
+-d grant_type=authorization_code \
+-d code=AQTpIKNYm4zfGlwa8A1S5AFuCgMQH440T2P1r3kWrXzctNh0sv72jOaGwoN1pERzSk7eMIX_y-nrVuHaNctYUyYRIr7QVAU7ajY3Eq6QITJ0X8CZeaiAkX8dd5AqpF_tUCeVnRApD_G7WUONica-H4RoGrRRlA3WHWOyjswuwRcE03vUl7lBOMQmRQEOmQ \
+-d redirect_uri=https%3A%2F%2Fapi-university.com \
+-d client_id=86mf11anljqsfe \
+-d client_secret=g0rxpjazY6gsH41v
+
+https://api-university.com/?code=AQTpIKNYm4zfGlwa8A1S5AFuCgMQH440T2P1r3kWrXzctNh0sv72jOaGwoN1pERzSk7eMIX_y-nrVuHaNctYUyYRIr7QVAU7ajY3Eq6QITJ0X8CZeaiAkX8dd5AqpF_tUCeVnRApD_G7WUONica-H4RoGrRRlA3WHWOyjswuwRcE03vUl7lBOMQmRQEOmQ&state=987654321
+
+access token hitesh: 
+AQVSwk-08Q6ytHmLp7vRehjPTD1ZQCsiS28TjcMyd3OqDLuIMwCwnSmivbTW83f
+WVuXPdjHtM8JRDUoxCVY6o5bd2pXZ-axnDODiZmn3-BmtZyBsvDFKrH55PODDfaXOKlu4k-R9pQgIAxZ
+FevWWxIJLq_POsVNf-qQjGu-MKZKb2LQvyRWPot5M8qJLt_oVVp2O-zSDfbJSulfllVzBfzxyTT9r7Lf
+Jkm_JonrL_vrDTINY4ITXl5zaLKcf3ZMwcfvzYtwut8Bax-FDtWbszslTG6btCMFWYtq2E9YM3DXaFky
+SrG-FYZ3RMpEyRNNOTJhm1n1RvtfjSUA0qPVuVakn-Mu4FQ
+
+
+##################################
+abhi
+
+curl -ik -X POST https://www.linkedin.com/oauth/v2/accessToken \
+-d grant_type=authorization_code \
+-d code=AQRLFTxYcWaFIYVx0vi2VqYonojbAdi9pQJij84-zYjnKN7vzeddubDZ1HwanphVdvAYaSA7opptRcYMf3ly8EeLBGwNSQrfMveyGY-sjww_VwvHoUi1lCRiNU9wJqntfhgkZesFOphMzgjQEu1tsTNgT2hj88p3medqq25NswP9kY3sL5JaqLjH20swZQ \
+-d redirect_uri=https%3A%2F%2Fapi-university.com \
+-d client_id=86mf11anljqsfe \
+-d client_secret=g0rxpjazY6gsH41v
+
+
+https://api-university.com/?code=AQRLFTxYcWaFIYVx0vi2VqYonojbAdi9pQJij84-zYjnKN7vzeddubDZ1HwanphVdvAYaSA7opptRcYMf3ly8EeLBGwNSQrfMveyGY-sjww_VwvHoUi1lCRiNU9wJqntfhgkZesFOphMzgjQEu1tsTNgT2hj88p3medqq25NswP9kY3sL5JaqLjH20swZQ&state=987654321
+
+
+access token abhi
+AQVx0oAasQW4cLdrEtrHoDwDNUFgtoqkIeSlktEhJZIsEXPVNVY6gubIm5b-jZ0
+aARBubCPmvNyS7y4BZ-j4fyfLGtSbyQwJPhLA5v9DZFOAEQi3ngCCxHn_1zClK_6aL5II6jcZ6B1m452
+7St2UF3bfVNK6T9n8i1h0bkroWhQokpprsY1pqJLDhesoclSl1DHCx9uvEX_eb1jzzm_ECHxNz7lYksO
+49Dw_JN3cERcAxOiHmKaA_d4dM1S3Z9kON7QXwMA0PKwhSsMr2N_V7mXzfpKUVD7umdIGmPKE4WrztNZ
+QZtBJvUVDQcdOqnFeUphKizgDxvU5RtlmNFiYMNTmZ6vUfw
